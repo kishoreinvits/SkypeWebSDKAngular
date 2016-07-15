@@ -59,7 +59,7 @@
 
                     });
                     element.before('<div class = "skypeContactPresence" id = "skypeContactPresence-' + statusId + '" ></div>');
-                    var user = scope.val.trim() + '@microsoft.com';
+                    var user = scope.val.trim() + '@yourSkypeDomain';
                     element.hover(function () {
                         $('.skypeContactCard').hide();
                         $('#' + id).css('display', 'block');
@@ -77,14 +77,14 @@
                     scope.$watch('val', function(newValue, oldValue) {
                         if (newValue)
                             console.log("I see a data change!");
-                        $('#' + chatId).attr('href', 'sip:' + newValue + '@microsoft.com');
-                        $('#' + mailId).attr('href', 'mailto:' + newValue + '@microsoft.com?Subject="Additional%20Details%20for%20JE"');
+                        $('#' + chatId).attr('href', 'sip:' + newValue + '@yourSkypeDomain');
+                        $('#' + mailId).attr('href', 'mailto:' + newValue + '@yourSkypeDomain?Subject="Additional%20Details%20for%20JE"');
                         searchUser(newValue);
 
                     }, true);
                     var searchUser = function (user) {
                         console.log("User is : " + user);
-                        if (user == "@microsoft.com") {
+                        if (user == "@yourSkypeDomain") {
                             $('#skypeContactPresence-' + statusId).css('display', 'none');
                             return;
                         }
@@ -101,7 +101,7 @@
                         console.log(user);
 
                         if (user.split('@').length == 1) {
-                            user = user + '@microsoft.com';
+                            user = user + '@yourSkypeDomain';
                         }
                         var query = window.skypeWebApp.personsAndGroupsManager.createPersonSearchQuery(user);
                         console.log(query);
